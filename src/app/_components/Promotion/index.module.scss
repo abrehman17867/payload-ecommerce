@@ -1,0 +1,84 @@
+@use '../../_css/queries.scss' as *;
+
+.promotion {
+  display: block;
+  margin-bottom: 0;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 90% 15%, rgba(91, 124, 250, 0.24), transparent 32%),
+    linear-gradient(135deg, #111b4a 0%, #1f2d72 60%, #22327f 100%);
+  color: #e9efff;
+  padding: 30px;
+  border: 1px solid rgba(104, 184, 255, 0.24);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+
+  @include small-break {
+    padding: 18px;
+    border-radius: var(--radius-md);
+  }
+}
+
+.title {
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.textBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+
+  p {
+    color: #d2dcff;
+    line-height: 1.55;
+    max-width: 760px;
+  }
+}
+
+.dealBtn {
+  width: fit-content;
+
+  @include mid-break {
+    width: 100%;
+  }
+}
+
+.stats {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, minmax(90px, 1fr));
+
+  @include large-break {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.statBox {
+  border-radius: 12px;
+  border: 1px solid rgba(167, 197, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  padding: 16px;
+  min-width: 100px;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+
+  h4 {
+    font-weight: bold;
+    color: #fff;
+  }
+
+  p {
+    color: #d2dcff;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.14);
+  }
+}

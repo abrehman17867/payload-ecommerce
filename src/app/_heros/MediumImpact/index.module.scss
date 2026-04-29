@@ -1,0 +1,70 @@
+@use '../../_css/common.scss' as *;
+
+.hero {
+  padding-top: calc(var(--base) * 2);
+  padding-bottom: calc(var(--base) * 1.5);
+  position: relative;
+
+  @include mid-break {
+    padding-top: var(--base);
+    padding-bottom: var(--base);
+  }
+}
+
+.richText {
+  position: relative;
+  max-width: 780px;
+  z-index: 2;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(91, 124, 250, 0.45), transparent);
+    top: calc(100% + 22px);
+
+    @include mid-break {
+      display: none;
+    }
+  }
+}
+
+.links {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  margin-top: calc(var(--base) * 2);
+
+  li {
+    margin-right: 12px;
+  }
+
+  @include mid-break {
+    display: block;
+    margin-top: var(--base);
+
+    li {
+      margin-right: 0;
+    }
+  }
+}
+
+.link {
+  @include mid-break {
+    width: 100%;
+  }
+}
+
+.media {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(91, 124, 250, 0.2);
+  box-shadow: var(--shadow-md);
+}

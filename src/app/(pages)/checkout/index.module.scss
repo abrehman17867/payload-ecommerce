@@ -1,0 +1,16 @@
+@import "../../_css/common";
+
+.checkout {
+  margin: 34px 0 20px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(91, 124, 250, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+
+  @include small-break {
+    margin-top: 20px;
+    padding: 16px;
+  }
+}

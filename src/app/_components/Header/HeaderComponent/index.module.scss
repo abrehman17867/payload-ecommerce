@@ -1,0 +1,45 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  padding: 12px 0;
+  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(91, 124, 250, 0.17);
+  box-shadow: 0 8px 22px rgba(19, 32, 76, 0.07);
+}
+
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+  min-height: 56px;
+}
+
+.logo {
+  width: 170px;
+}
+
+.logoLink {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.22s ease, opacity 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px) scale(1.01);
+    opacity: 0.92;
+  }
+}
+
+.brandText {
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: #1f2d64;
+}
+
+.hide { 
+  display: none;
+}

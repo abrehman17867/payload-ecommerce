@@ -1,0 +1,147 @@
+@use './queries.scss' as *;
+@use './colors.scss' as *;
+@use './type.scss' as *;
+@import "./theme.scss";
+
+:root {
+  --base: 24px;
+  --font-body: 'Jost', sans-serif;
+  --font-jost: 'Jost', sans-serif;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 8px 24px rgba(9, 14, 35, 0.08);
+  --shadow-md: 0 16px 40px rgba(9, 14, 35, 0.12);
+  --brand-500: #5b7cfa;
+  --brand-600: #4b6ef5;
+  --brand-700: #3d5ce0;
+  --surface-1: #f7f9fc;
+  --surface-2: #eef2ff;
+
+  --gutter-h: clamp(28px, 5vw, 84px);
+  --block-padding: 120px;
+
+  @include large-break {
+    --gutter-h: clamp(24px, 4vw, 56px);
+    --block-padding: 96px;
+  }
+
+  @include mid-break {
+    --gutter-h: 24px;
+    --block-padding: 60px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  @extend %body;
+  background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 36%, #f7faff 100%);
+  -webkit-font-smoothing: antialiased;
+  opacity: 0;
+
+  &[data-theme=dark],
+  &[data-theme=light] {
+    opacity: initial;
+  }
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-jost);
+  margin: 0;
+  padding: 0;
+  color: var(--color-dark-500);
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1 1 auto;
+  width: 100%;
+  padding-bottom: 48px;
+}
+
+::selection {
+  background: var(--color-dark-500);
+  color: var(--color-base-800);
+}
+
+::-moz-selection {
+  background: var(--color-dark-50);
+  color: var(--color-base-800);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1 {
+  @extend %h1;
+}
+
+h2 {
+  @extend %h2;
+}
+
+h3 {
+  @extend %h3;
+}
+
+h4 {
+  @extend %h4;
+}
+
+h5 {
+  @extend %h5;
+}
+
+h6 {
+  @extend %h6;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--color-dark-500);
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+
+  &:focus {
+    opacity: .8;
+    outline: none;
+  }
+
+  &:active {
+    opacity: .7;
+    outline: none;
+  }
+}
+
+svg {
+  vertical-align: middle;
+}

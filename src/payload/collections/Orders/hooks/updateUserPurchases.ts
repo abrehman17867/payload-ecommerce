@@ -1,0 +1,43 @@
+import type { AfterChangeHook } from 'payload/dist/collections/config/types'
+
+import type { Order } from '../../../payload-types'
+import { retryTransientWrite } from '../../../utilities/retryTransientWrite'
+
+export const updateUserPurchases: AfterChangeHook<Order> = async ({ doc, req, operation }) => {
+  const { payload } = req
+
+  if ((operation === 'create' || operation === 'update') && doc.orderedBy && doc.items) {
+    const orderedBy = typeof doc.orderedBy === 'string' ? doc.orderedBy : doc.orderedBy.id
+
+    const user = await payload.findByID({
+      collection: 'users',
+      id: orderedBy,
+    })
+
+    if (user) {
+      const existingPurchases =
+        user?.purchases?.map(purchase => (typeof purchase === 'string' ? purchase : purchase.id)) || []
+      const newPurchases =
+        doc?.items?.map(({ product }) => (typeof product === 'string' ? product : product.id)) || []
+
+      await retryTransientWrite(async () =>
+        payload.update({
+          collection: 'users',
+          id: orderedBy,
+          data: {
+            purchases: [...existingPurchases, ...newPurchases],
+            ...(operation === 'create'
+              ? {
+                  cart: {
+                    items: [],
+                  },
+                }
+              : {}),
+          },
+        }),
+      )
+    }
+  }
+
+  return
+}

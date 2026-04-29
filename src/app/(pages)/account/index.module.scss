@@ -1,0 +1,62 @@
+@import '../../_css/common';
+
+.container {
+  width: 100%;
+  margin: 36px 0 20px;
+  animation: pageEnter 0.45s ease both;
+
+  @include small-break {
+    margin-top: 30px;
+  }
+}
+
+.account {
+  display: grid;
+  grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+  gap: 28px;
+  margin-top: 20px;
+
+  @include small-break {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 30px;
+  }
+}
+
+.nav {
+  border: 1px solid rgba(91, 124, 250, 0.16);
+  display: flex;
+  flex-direction: column;
+  height: min-content;
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 96px;
+}
+
+.navItem {
+  display: flex;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(91, 124, 250, 0.1);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.personalInfo {
+  margin-bottom: 30px;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

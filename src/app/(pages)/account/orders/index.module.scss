@@ -1,0 +1,110 @@
+@import '../../../_css/common';
+
+.form {
+  margin-bottom: var(--base);
+}
+
+.success,
+.error {
+  margin-bottom: 15px;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}
+
+.noOrders {
+  font-weight: 600;
+  color: #4f587b;
+  background: #fff;
+  border: 1px solid rgba(91, 124, 250, 0.15);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.orders {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 12px;
+  border-top: 0;
+}
+
+.order {
+  padding: 0;
+  border-bottom: 0;
+  background: #fff;
+  border: 1px solid rgba(91, 124, 250, 0.15);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  opacity: 0;
+  animation: revealOrder 0.45s ease forwards;
+  animation-delay: calc(var(--stagger, 0) * 60ms);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+@keyframes revealOrder {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 14px 16px;
+  gap: 12px;
+
+  @include small-break {
+    flex-direction: column;
+  }
+}
+
+.itemContent {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.itemTitle {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.orderDate {
+  font-size: 13px;
+  color: #636b8a;
+}
+
+.itemMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  & > * {
+    margin: 0;
+  }
+}
+
+.button {
+  flex-shrink: 0;
+}

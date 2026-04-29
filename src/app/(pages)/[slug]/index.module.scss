@@ -1,0 +1,53 @@
+@import '../../_css/queries.scss';
+
+.homeShell {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 8% 14%, rgba(91, 124, 250, 0.22), transparent 35%),
+    radial-gradient(circle at 90% 20%, rgba(67, 205, 255, 0.18), transparent 32%),
+    linear-gradient(180deg, #f4f7ff 0%, #ffffff 42%, #f7fbff 100%);
+}
+
+.heroSection {
+  animation: homeReveal 0.55s ease both;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin-top: 44px;
+  margin-bottom: 58px;
+  animation: homeReveal 0.65s ease both;
+  animation-delay: 90ms;
+
+  @include mid-break {
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 36px;
+  }
+}
+
+.homeCard {
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(91, 124, 250, 0.16);
+  box-shadow: var(--shadow-sm);
+  padding: 28px;
+
+  @include small-break {
+    padding: 16px;
+  }
+}
+
+@keyframes homeReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

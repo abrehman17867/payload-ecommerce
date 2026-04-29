@@ -1,0 +1,133 @@
+@use '../../../_css/queries.scss' as *;
+
+.footer {
+  padding: 36px 0;
+  background: linear-gradient(160deg, #0c1027 0%, #1a2459 100%);
+  color: #edf1ff;
+  border-top: 1px solid rgba(91, 124, 250, 0.24);
+
+  @include small-break {
+    padding: calc(var(--base) * 2) 0;
+  }
+}
+
+
+.inclusions {
+  display: grid;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 72px 0 48px;
+
+  @include large-break {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mid-break {
+    margin: 40px 0 28px;
+  }
+
+  @include extra-small-break {
+    grid-template-columns: 1fr;
+  }
+
+  li {
+    border: 1px solid rgba(91, 124, 250, 0.14);
+    border-radius: 14px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.84);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  li:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  p {
+    color: #4c5579;
+  }
+}
+
+.icon {
+  margin-bottom: 12px;
+}
+
+
+:global([data-theme='dark']) {
+  .footer {
+    background-color: var(--theme-elevation-50);
+    color: var(--theme-elevation-1000);
+  }
+}
+
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: calc(var(--base) / 2) var(--base);
+
+  @include small-break {
+    margin-top: 30px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.wrap p {
+  color: #ced8ff;
+}
+
+.brandText {
+  display: inline-flex;
+  align-items: center;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: #edf1ff;
+}
+
+.hr {
+  border-color: var(--color-white-500-20);
+}
+
+.socialLinks {
+  display: flex;
+  gap: 10px;
+}
+
+.socialLinkItem {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(237, 241, 255, 0.14);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    background: rgba(237, 241, 255, 0.26);
+  }
+}
+
+.socialIcon {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.socialLinkItem:hover .socialIcon {
+  transform: scale(1.08);
+}
+
+.hide {
+  display: none;
+}
+

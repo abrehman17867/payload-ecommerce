@@ -1,0 +1,23 @@
+@import '../../_css/common';
+
+.pageRange {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: #394266;
+  font-size: 14px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  margin: 0 calc(var(--base) / 2);
+}
+
+.divider {
+  margin: 0 2px;
+}
+
+.hyperlink {
+  display: flex;
+}

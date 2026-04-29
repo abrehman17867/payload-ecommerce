@@ -1,0 +1,59 @@
+@use '../../_css/type.scss' as *;
+@use '../../_css/queries.scss' as *;
+
+.lowImpactHero {
+  padding-top: 36px;
+  position: relative;
+}
+
+.content {
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(91, 124, 250, 0.18);
+  background:
+    linear-gradient(130deg, rgba(91, 124, 250, 0.09) 0%, rgba(255, 255, 255, 0.95) 38%),
+    #fff;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  position: relative;
+}
+
+.richText {
+  position: relative;
+  z-index: 2;
+  padding: 18px clamp(16px, 3vw, 36px);
+
+  :global(h1) {
+    color: #1f2646;
+    margin-bottom: 8px;
+  }
+
+  :global(p) {
+    color: #4f577a;
+    max-width: 760px;
+  }
+}
+
+.content::before {
+  content: '';
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  right: -96px;
+  top: -110px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(91, 124, 250, 0.24) 0%, transparent 70%);
+}
+
+@include small-break {
+  .lowImpactHero {
+    padding-top: 18px;
+  }
+
+  .content {
+    border-radius: var(--radius-md);
+  }
+
+  .richText {
+    padding: 14px 16px;
+  }
+}

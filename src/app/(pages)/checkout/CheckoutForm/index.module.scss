@@ -1,0 +1,17 @@
+@import "../../../_css/common";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--base) / 1.4);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  background: #fff;
+  border: 1px solid rgba(91, 124, 250, 0.16);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}

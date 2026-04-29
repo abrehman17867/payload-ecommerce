@@ -1,0 +1,42 @@
+@use '../../_css/queries.scss' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(91, 124, 250, 0.16);
+  padding-bottom: 14px;
+
+  h3 {
+    font-weight: 700;
+    color: #20284b;
+  }
+
+  a {
+    color: #3d5ce0;
+    font-weight: 600;
+    transition: transform 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      color: #2e45b0;
+      transform: translateX(2px);
+    }
+  }
+}
+
+.list {
+  display: grid;
+  gap: 20px;
+  padding: 0;
+  grid-template-columns: repeat(3, 1fr);
+
+  @include small-break {
+    grid-template-columns: 1fr;
+  }
+}

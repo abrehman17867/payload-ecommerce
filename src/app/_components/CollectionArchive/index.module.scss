@@ -1,0 +1,104 @@
+@import '../../_css/common';
+
+// this is to make up for the space taken by the fixed header, since the scroll method does not accept an offset parameter
+.scrollRef {
+  position: absolute;
+  left: 0;
+  top: calc(var(--base) * -5);
+  @include mid-break {
+    top: calc(var(--base) * -2);
+  }
+}
+
+.introContent {
+  position: relative;
+  margin-bottom: calc(var(--base) * 2);
+
+  @include mid-break {
+    margin-bottom: var(--base);
+  }
+}
+
+.resultCountWrapper {
+  display: flex;
+  margin-bottom: calc(var(--base) * 2);
+
+  @include mid-break {
+    margin-bottom: var(--base);
+  }
+}
+
+.pageRange {
+  margin-bottom: var(--base);
+
+  @include mid-break {
+    margin-bottom: var(--base);
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  padding: 0;
+  width: 100%;
+
+  @include large-break {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include mid-break {
+    gap: 16px;
+  }
+
+  @include small-break {
+    grid-template-columns: 100%;
+  }
+}
+
+.skeletonCard {
+  min-height: 360px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(91, 124, 250, 0.12);
+  background: linear-gradient(
+    110deg,
+    rgba(91, 124, 250, 0.08) 8%,
+    rgba(91, 124, 250, 0.18) 18%,
+    rgba(91, 124, 250, 0.08) 33%
+  );
+  background-size: 200% 100%;
+  animation: shimmerCard 1.2s linear infinite;
+}
+
+@keyframes revealItem {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.revealItem {
+  opacity: 0;
+  animation: revealItem 0.45s ease forwards;
+  animation-delay: calc(var(--stagger, 0) * 55ms);
+}
+
+@keyframes shimmerCard {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.pagination {
+  margin-top: calc(var(--base) * 2);
+  display: flex;
+  justify-content: center;
+
+  @include mid-break {
+    margin-top: var(--base);
+  }
+}

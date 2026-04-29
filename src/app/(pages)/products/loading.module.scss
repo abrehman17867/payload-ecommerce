@@ -1,0 +1,56 @@
+.wrap {
+  width: 100%;
+  padding: 18px 0;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: 32px;
+}
+
+.filterSkeleton {
+  min-height: 220px;
+  border-radius: 16px;
+  border: 1px solid rgba(91, 124, 250, 0.14);
+  background: linear-gradient(110deg, #eef2ff 8%, #dfe7ff 18%, #eef2ff 33%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.card {
+  min-height: 320px;
+  border-radius: 16px;
+  border: 1px solid rgba(91, 124, 250, 0.14);
+  background: linear-gradient(110deg, #eef2ff 8%, #dfe7ff 18%, #eef2ff 33%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+
+@media (max-width: 1200px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position-x: -200%;
+  }
+}
