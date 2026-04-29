@@ -15,8 +15,8 @@ export const clearUserCart: AfterChangeHook<Order> = async ({ doc, req, operatio
     })
 
     if (user) {
-      await retryTransientWrite(async () =>
-        payload.update({
+      await retryTransientWrite(async () => {
+        return payload.update({
           collection: 'users',
           id: orderedBy,
           data: {
@@ -24,8 +24,8 @@ export const clearUserCart: AfterChangeHook<Order> = async ({ doc, req, operatio
               items: [],
             },
           },
-        }),
-      )
+        })
+      })
     }
   }
 

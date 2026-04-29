@@ -25,8 +25,17 @@ const collectDescendantIds = (node: CategoryNode): string[] => {
 }
 
 const resolveHref = (link: HeaderType['navItems'][0]['link']) => {
-  if (link?.type === 'reference' && typeof link?.reference?.value === 'object' && link.reference.value?.slug) {
-    return `/${link.reference.value.slug === 'home' ? '' : link.reference.value.slug}`.replace(/\/$/, '') || '/'
+  if (
+    link?.type === 'reference' &&
+    typeof link?.reference?.value === 'object' &&
+    link.reference.value?.slug
+  ) {
+    return (
+      `/${link.reference.value.slug === 'home' ? '' : link.reference.value.slug}`.replace(
+        /\/$/,
+        '',
+      ) || '/'
+    )
   }
 
   if (link?.type === 'custom' && link?.url) return link.url
@@ -97,8 +106,8 @@ export const HeaderNav: React.FC<{ header: HeaderType; categories: Category[] }>
         typeof category.parent === 'string'
           ? category.parent
           : category.parent && typeof category.parent === 'object'
-            ? category.parent.id
-            : null
+          ? category.parent.id
+          : null
 
       parentLookup.set(category.id, parentId || null)
     })
@@ -135,25 +144,38 @@ export const HeaderNav: React.FC<{ header: HeaderType; categories: Category[] }>
           >
             <button
               type="button"
-              className={[classes.menuLink, classes.dropdownTrigger, desktopShopOpen && classes.activeLink]
+              className={[
+                classes.menuLink,
+                classes.dropdownTrigger,
+                desktopShopOpen && classes.activeLink,
+              ]
                 .filter(Boolean)
                 .join(' ')}
               onClick={() => setDesktopShopOpen(prev => !prev)}
             >
               Shop
-              <span className={[classes.expandIcon, desktopShopOpen && classes.expandIconOpen].join(' ')}>
+              <span
+                className={[classes.expandIcon, desktopShopOpen && classes.expandIconOpen].join(
+                  ' ',
+                )}
+              >
                 ▾
               </span>
             </button>
             <div
-              className={[classes.desktopDropdownMenu, desktopShopOpen && classes.desktopDropdownMenuOpen]
+              className={[
+                classes.desktopDropdownMenu,
+                desktopShopOpen && classes.desktopDropdownMenuOpen,
+              ]
                 .filter(Boolean)
                 .join(' ')}
             >
               {categoryTree.map(parent => (
                 <div key={parent.id} className={classes.desktopCategoryGroup}>
                   <Link
-                    href={`/products?categories=${[parent.id, ...collectDescendantIds(parent)].join(',')}`}
+                    href={`/products?categories=${[parent.id, ...collectDescendantIds(parent)].join(
+                      ',',
+                    )}`}
                     className={classes.parentCategoryLink}
                   >
                     {parent.title}
@@ -275,7 +297,9 @@ export const HeaderNav: React.FC<{ header: HeaderType; categories: Category[] }>
             {categoryTree.map(parent => (
               <div key={parent.id} className={classes.mobileCategoryGroup}>
                 <Link
-                  href={`/products?categories=${[parent.id, ...collectDescendantIds(parent)].join(',')}`}
+                  href={`/products?categories=${[parent.id, ...collectDescendantIds(parent)].join(
+                    ',',
+                  )}`}
                   className={[classes.categoryLink, classes.parentMobileCategory].join(' ')}
                 >
                   {parent.title}
@@ -295,7 +319,10 @@ export const HeaderNav: React.FC<{ header: HeaderType; categories: Category[] }>
           {user ? (
             <Link
               href="/account"
-              className={[classes.drawerLink, pathname.startsWith('/account') && classes.activeDrawerLink]
+              className={[
+                classes.drawerLink,
+                pathname.startsWith('/account') && classes.activeDrawerLink,
+              ]
                 .filter(Boolean)
                 .join(' ')}
               onClick={() => setIsOpen(false)}

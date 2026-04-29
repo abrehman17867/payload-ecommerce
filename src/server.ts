@@ -10,7 +10,6 @@ dotenv.config({
 import express from 'express'
 import payload from 'payload'
 
-
 import { seed } from './payload/seed'
 
 const app = express()

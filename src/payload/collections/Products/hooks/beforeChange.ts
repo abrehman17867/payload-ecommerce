@@ -1,5 +1,6 @@
 import type { BeforeChangeHook } from 'payload/dist/collections/config/types'
 import Stripe from 'stripe'
+
 import { getRemovedParentCount, normalizeCategoryIDs } from '../utilities/categorySelection'
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY

@@ -19,7 +19,10 @@ const getParentID = (parent: CategoryDoc['parent']): string | null => {
   return null
 }
 
-const normalizeSelection = (selectedIDs: string[], parentByID: Map<string, string | null>): string[] => {
+const normalizeSelection = (
+  selectedIDs: string[],
+  parentByID: Map<string, string | null>,
+): string[] => {
   if (selectedIDs.length <= 1) return selectedIDs
 
   const ancestors = new Set<string>()
@@ -38,7 +41,11 @@ const normalizeSelection = (selectedIDs: string[], parentByID: Map<string, strin
   return selectedIDs.filter(id => !ancestors.has(id))
 }
 
-export const CategoriesSelect: React.FC<{ name: string; label?: string; required?: boolean }> = props => {
+export const CategoriesSelect: React.FC<{
+  name: string
+  label?: string
+  required?: boolean
+}> = props => {
   const { name, label = 'Categories', required } = props
   const { value, setValue, errorMessage, showError } = useField<string[]>({ path: name })
   const [warning, setWarning] = React.useState<string>('')
@@ -94,7 +101,9 @@ export const CategoriesSelect: React.FC<{ name: string; label?: string; required
     const removedCount = selectedIDs.length - normalized.length
     if (removedCount > 0) {
       setWarning(
-        `Parent categor${removedCount > 1 ? 'ies were' : 'y was'} removed automatically. Keep only the most specific child categories.`,
+        `Parent categor${
+          removedCount > 1 ? 'ies were' : 'y was'
+        } removed automatically. Keep only the most specific child categories.`,
       )
     } else {
       setWarning('')

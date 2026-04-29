@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload/types'
+
 import { validateCategoryHierarchy } from './Categories/hooks/validateCategoryHierarchy'
 
 const Categories: CollectionConfig = {

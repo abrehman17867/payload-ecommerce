@@ -19,7 +19,7 @@ export const retryTransientWrite = async <T>(
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     try {
       return await operation()
-    } catch (error) {
+    } catch (error: unknown) {
       lastError = error
 
       if (!isTransientWriteConflict(error) || attempt === maxAttempts) {

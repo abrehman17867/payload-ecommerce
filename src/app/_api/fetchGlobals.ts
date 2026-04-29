@@ -2,7 +2,7 @@ import type { Footer, Header, Settings } from '../../payload/payload-types'
 import { FOOTER_QUERY, HEADER_QUERY, SETTINGS_QUERY } from '../_graphql/globals'
 import { GRAPHQL_API_URL } from './shared'
 
-const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+const wait = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
 
 const fetchGlobalWithRetry = async <T>(query: string, label: string): Promise<T> => {
   let lastError: unknown
@@ -27,7 +27,7 @@ const fetchGlobalWithRetry = async <T>(query: string, label: string): Promise<T>
         })
 
       return data
-    } catch (error) {
+    } catch (error: unknown) {
       lastError = error
 
       if (attempt === 3) break

@@ -15,7 +15,9 @@ const CategoryCard = ({ category }: CategoryCardProps) => {
   const media = category.media
   const { setCategoryFilters } = useFilter()
   const backgroundImage =
-    media && typeof media === 'object' && 'url' in media && media.url ? `url(${media.url})` : undefined
+    media && typeof media === 'object' && 'url' in media && media.url
+      ? `url(${media.url})`
+      : undefined
 
   return (
     <Link

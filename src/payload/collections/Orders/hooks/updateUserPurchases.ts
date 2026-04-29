@@ -16,12 +16,13 @@ export const updateUserPurchases: AfterChangeHook<Order> = async ({ doc, req, op
 
     if (user) {
       const existingPurchases =
-        user?.purchases?.map(purchase => (typeof purchase === 'string' ? purchase : purchase.id)) || []
+        user?.purchases?.map(purchase => (typeof purchase === 'string' ? purchase : purchase.id)) ||
+        []
       const newPurchases =
         doc?.items?.map(({ product }) => (typeof product === 'string' ? product : product.id)) || []
 
-      await retryTransientWrite(async () =>
-        payload.update({
+      await retryTransientWrite(async () => {
+        return payload.update({
           collection: 'users',
           id: orderedBy,
           data: {
@@ -34,8 +35,8 @@ export const updateUserPurchases: AfterChangeHook<Order> = async ({ doc, req, op
                 }
               : {}),
           },
-        }),
-      )
+        })
+      })
     }
   }
 

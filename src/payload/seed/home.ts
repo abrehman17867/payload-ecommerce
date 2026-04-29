@@ -69,7 +69,6 @@ export const home: Partial<Page> = {
           url: '',
         },
       },
-      
     ],
     media: '{{PRODUCT1_IMAGE}}',
   },

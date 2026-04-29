@@ -10,9 +10,7 @@ import classes from './index.module.scss'
 
 const HeaderComponent = ({ header, categories }: { header: Header; categories: Category[] }) => {
   return (
-    <nav
-      className={[classes.header].filter(Boolean).join(' ')}
-    >
+    <nav className={[classes.header].filter(Boolean).join(' ')}>
       <Gutter className={classes.wrap}>
         <Link href="/" className={classes.logoLink}>
           <span className={classes.brandText}>Ecommerce</span>

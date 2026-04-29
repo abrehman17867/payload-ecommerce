@@ -6,7 +6,7 @@ type CategoryValue =
       relationTo?: string
     }
 
-type PayloadLike = {
+interface PayloadLike {
   findByID: (args: { collection: 'categories'; id: string; depth: number }) => Promise<unknown>
 }
 
@@ -16,7 +16,11 @@ export const extractCategoryID = (category: CategoryValue): string | null => {
   if (category && typeof category === 'object') {
     if (typeof category.id === 'string') return category.id
     if (typeof category.value === 'string') return category.value
-    if (category.value && typeof category.value === 'object' && typeof category.value.id === 'string') {
+    if (
+      category.value &&
+      typeof category.value === 'object' &&
+      typeof category.value.id === 'string'
+    ) {
       return category.value.id
     }
   }
@@ -33,7 +37,10 @@ export const getSelectedCategoryIDs = (categories: unknown): string[] =>
     ),
   )
 
-export const normalizeCategoryIDs = async (payload: PayloadLike, categories: unknown): Promise<string[]> => {
+export const normalizeCategoryIDs = async (
+  payload: PayloadLike,
+  categories: unknown,
+): Promise<string[]> => {
   const selectedIDs = getSelectedCategoryIDs(categories)
 
   if (selectedIDs.length <= 1) return selectedIDs
@@ -53,8 +60,8 @@ export const normalizeCategoryIDs = async (payload: PayloadLike, categories: unk
       typeof categoryDoc?.parent === 'string'
         ? categoryDoc.parent
         : typeof categoryDoc?.parent === 'object' && typeof categoryDoc.parent?.id === 'string'
-          ? categoryDoc.parent.id
-          : null
+        ? categoryDoc.parent.id
+        : null
 
     parentCache.set(id, parentID)
     return parentID
@@ -76,7 +83,10 @@ export const normalizeCategoryIDs = async (payload: PayloadLike, categories: unk
   return selectedIDs.filter(id => !ancestors.has(id))
 }
 
-export const getRemovedParentCount = async (payload: PayloadLike, categories: unknown): Promise<number> => {
+export const getRemovedParentCount = async (
+  payload: PayloadLike,
+  categories: unknown,
+): Promise<number> => {
   const selectedIDs = getSelectedCategoryIDs(categories)
   const normalized = await normalizeCategoryIDs(payload, categories)
   return Math.max(selectedIDs.length - normalized.length, 0)

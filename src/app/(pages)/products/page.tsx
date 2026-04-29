@@ -12,11 +12,7 @@ import Filters from './Filters'
 
 import classes from './index.module.scss'
 
-const Products = async ({
-  searchParams,
-}: {
-  searchParams?: { categories?: string }
-}) => {
+const Products = async ({ searchParams }: { searchParams?: { categories?: string } }) => {
   const { isEnabled: isDraftMode } = draftMode()
 
   let page: Page | null = null
